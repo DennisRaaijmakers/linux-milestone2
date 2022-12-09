@@ -21,6 +21,7 @@ class Name(Document):
 
 
 @app.get("/user")
-def user():
+async def user():
     name = Name.objects
+    print ("TEST", name)
     return {"name" : name}
