@@ -23,4 +23,4 @@ class Name(Document):
 @app.get("/user")
 def user():
     name = Name.objects
-    return name
+    return {"name" : name}
