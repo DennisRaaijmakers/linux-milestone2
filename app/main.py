@@ -25,3 +25,7 @@ async def user():
     name = Name.objects
     print ("TEST", name)
     return {"name" : name}
+
+@app.get("/")
+async def user():
+    return {"Welcome to API"}
