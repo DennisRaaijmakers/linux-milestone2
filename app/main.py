@@ -26,6 +26,6 @@ async def user():
     print ("TEST", name)
     return {"name" : name}
 
-@app.get("/")
+@app.get("/api/")
 async def user():
     return {"Welcome to API"}
