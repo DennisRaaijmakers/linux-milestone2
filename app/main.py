@@ -1,20 +1,16 @@
 from typing import Union
-from pydantic import BaseModel, Field
+
 from fastapi import FastAPI
 from pymongo import MongoClient
 
 app = FastAPI()
 
-mongodb_uri = 'mongodb://dennis:abc123!@nginx.net/milestone2.collection'
-port = 27017
-
-client = MongoClient(mongodb_uri, port)
-
-class UserBase(BaseModel):
-    name: str
+mongo_client = MongoClient(host="dr-mongodb-service", port=27017, username="dennis", password="abc123!")
+database = mongo_client['milestone2']
+collection = database["name"]
 
 
-@app.get('/user', response_model=UserBase)
-async def namedb():
-    name = await db.milestone2.find()
-    return name
+@app.get("/user")
+def read_root():
+    naam = collection.find({})[0]
+    return {"name": naam["name"] }
